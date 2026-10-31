@@ -2,7 +2,7 @@
 
 This is an n8n community node for [Ramp](https://ramp.com), the corporate card, bill pay and spend management platform. It adds two nodes:
 
-- **Ramp**: work with transactions, bills, vendors, purchase orders, cards, funds, users and more.
+- **Ramp**: the full Ramp Developer API, from cards, transactions and bills to payments, procurement requests, accounting fields and custom records.
 - **Ramp Trigger**: start a workflow from Ramp webhook events, such as a cleared transaction or a paid bill.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
@@ -38,27 +38,27 @@ The credential also works with the built-in **HTTP Request** node (Authenticatio
 
 ## Operations
 
-| Resource | Operations |
+The node covers the whole Ramp Developer API: 275 operations across 51 resources. The only endpoints left out are token issuance (the credential handles it) and three that Ramp has deprecated in favour of newer ones.
+
+| Area | Resources |
 | --- | --- |
-| Bill | Archive, Create, Get, Get Many, Hold, Release Hold, Update |
-| Card | Get, Get Many (physical or virtual); Suspend, Terminate, Unsuspend, Update (physical) |
-| Department | Create, Get, Get Many, Update |
-| Entity | Get, Get Many |
-| Fund | Get, Get Many, Suspend, Terminate, Unsuspend, Update |
-| Purchase Order | Archive, Create, Get, Get Many, Update |
-| Receipt | Get, Get Many |
-| Reimbursement | Get, Get Many |
-| Transaction | Get, Get Many, Set Memo, Split |
-| User | Deactivate, Get, Get Invite Status, Get Many, Invite, Reactivate, Update |
-| Vendor | Create, Delete, Get, Get Many, Update |
+| Spend | Card, Fund, Transaction, Receipt, Reimbursement, Repayment, Merchant, Spend Program, Statement, Cashback, Trip |
+| Bill pay | Bill, Draft Bill, Payment, Vendor, Vendor Agreement, Vendor Credit, Transfer |
+| Procurement | Unified Request, Spend Request, Purchase Order, Item Receipt, Approval, Blank Canvas Approval |
+| Accounting | Accounting Connection, Accounting Sync, Accounting Field, Accounting Field Option, Ramp-Only Field, Accounting Vendor, GL Account, Tax Code, Tax Rate, Inventory Item Field |
+| Custom records | Custom Table, Matrix Table, Native Table |
+| Company | Business, Entity, Department, Location, User, Bank Account, Banking, Audit Log, AI Spend, Financing Application |
+| Other | Comment, Custom Form Response, Receipt Email Opt-Out, Webhook |
 
-Every Get Many supports Return All, following Ramp's `page.next` links, plus the filters Ramp offers for that list (dates, entity, sync status, approval status and so on).
+Every Get Many supports Return All, following Ramp's `page.next` links, plus the filters Ramp offers for that list.
 
-Bills, vendors, entities, departments, users, funds, cards and purchase orders can be picked from a searchable list or entered by ID.
+Bills, vendors, entities, departments, users, funds, cards and purchase orders can be picked from a searchable list or entered by ID. Other records are entered by ID.
 
-Nested structures, such as bill and purchase order line items, transaction splits, payment details or fund restrictions, go in a JSON field using the names from the [Ramp API reference](https://docs.ramp.com/developer-api/v1/introduction). Form fields win over the same key in the JSON.
+Flat fields are form fields. Nested structures, such as line items, payment details, accounting codings or fund restrictions, go in JSON fields using the names from the [Ramp API reference](https://docs.ramp.com/developer-api/v1/introduction). Form fields win over the same key in the JSON.
 
-The node does not move money: there are no operations to pay bills, create payments or issue cards with funds.
+Uploads (bill and draft bill attachments, receipts, reimbursement receipts, procurement attachments, vendor agreement documents, spend requests from a document) take a file from an input binary field. Remittance receipts download as binary PDF files.
+
+Operations on the core resources (Bill, Card, Fund, Purchase Order, Transaction, User, Vendor and the rest of the first release) have hand-written forms. The others are generated from Ramp's OpenAPI spec by `npm run generate`, so they use Ramp's own field names and descriptions.
 
 ## Trigger
 
@@ -78,6 +78,9 @@ The Ramp Trigger creates a webhook subscription when the workflow is activated a
 - **Ramp does not deduplicate vendors or bills.** Check with Get Many (vendor name or external ID, bill invoice number) before creating one.
 - **The rate limit is 200 requests per 10 seconds per IP address**, shared by every workflow on the same n8n instance. A 429 can block requests for 60 seconds. Use the node's batching settings for large runs.
 - **Incremental sync filters differ per list.** Reimbursements have Updated After; transactions only have Synced After (accounting syncs, not edits); bills only have Created After.
+- **Payment > Create and Retry move real money.** They require an idempotency key, which the node generates per item unless you set one from your own data. Set one, so a re-run cannot pay twice.
+- **Card > Create Virtual With Details and Get Sensitive Details return full card numbers and CVVs.** Ramp only grants the `cards:read_vault` scope to approved integrators. Treat the output like a password and keep it out of logs and execution data you share.
+- **Each resource needs its scopes.** The credential's default scope covers the core resources. For the others, add the matching scope to the Ramp app and the credential, for example `unified_requests:read`, `payments:write`, `accounting:write` or `custom_records:read`. A missing scope shows as a 403 that names it.
 - Errors show Ramp's own message, its error code and the `x-trace-id` to quote to Ramp support.
 - Purchase order endpoints need the Ramp Plus plan.
 
@@ -95,11 +98,14 @@ npm test           # description, signature and helper tests
 npm run build
 ```
 
-The tests check every operation against Ramp's OpenAPI spec: each URL and method must exist, and each query and body parameter the node sends must be one the endpoint accepts. When Ramp ships API changes, refresh the spec fixture and the trigger's event list with:
+The tests check every operation against Ramp's OpenAPI spec: each URL and method must exist, and each query and body parameter the node sends must be one the endpoint accepts. A further test fails when Ramp adds an endpoint the node does not cover yet. When Ramp ships API changes, refresh the spec fixture and the trigger's event list, then regenerate the operations:
 
 ```bash
 npm run sync:openapi
+npm run generate
 ```
+
+New endpoints go in `scripts/endpoints.mjs` (resource and operation name), or in its excluded list with a reason.
 
 ## Resources
 

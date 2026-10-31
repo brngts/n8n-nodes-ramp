@@ -1,5 +1,5 @@
 import type { IHttpRequestMethods, INodeProperties, INodePropertyOptions } from 'n8n-workflow';
-import { sendRampRequest, type OutputMode } from './request';
+import { sendRampRequest, type OutputMode, type RequestSettings } from './request';
 
 type OperationOptions = {
 	name: string;
@@ -8,7 +8,8 @@ type OperationOptions = {
 	description: string;
 	method: IHttpRequestMethods;
 	url: string;
-	output?: OutputMode;
+	/** How the response becomes items, see `sendRampRequest`. */
+	output?: OutputMode | RequestSettings;
 	request?: Record<string, unknown>;
 };
 
@@ -43,7 +44,7 @@ export function operation({
 	};
 }
 
-/** The "Operation" dropdown for a resource. */
+/** The "Operation" dropdown for a resource, in alphabetical order. */
 export function operationSelector(
 	resource: string,
 	options: INodePropertyOptions[],
@@ -55,7 +56,7 @@ export function operationSelector(
 		type: 'options',
 		noDataExpression: true,
 		displayOptions: { show: { resource: [resource] } },
-		options,
+		options: [...options].sort((a, b) => a.name.localeCompare(b.name)),
 		default: defaultOperation,
 	};
 }

@@ -7,6 +7,7 @@ import {
 	recordLocator,
 } from '../../shared/descriptions';
 import { operation, operationSelector } from '../../shared/operations';
+import { cardGeneratedOperations, cardGeneratedProperties } from '../generated/card';
 
 const RESOURCE = 'card';
 
@@ -16,6 +17,7 @@ export const cardDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...cardGeneratedOperations,
 			operation({
 				name: 'Get',
 				value: 'get',
@@ -187,4 +189,5 @@ export const cardDescription: INodeProperties[] = [
 			),
 		].sort(byDisplayName),
 	},
+	...cardGeneratedProperties,
 ];

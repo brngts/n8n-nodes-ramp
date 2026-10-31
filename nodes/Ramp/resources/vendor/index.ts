@@ -10,6 +10,7 @@ import {
 	recordLocator,
 } from '../../shared/descriptions';
 import { operation, operationSelector } from '../../shared/operations';
+import { vendorGeneratedOperations, vendorGeneratedProperties } from '../generated/vendor';
 
 const RESOURCE = 'vendor';
 
@@ -105,6 +106,7 @@ export const vendorDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...vendorGeneratedOperations,
 			operation({
 				name: 'Create',
 				value: 'create',
@@ -297,4 +299,5 @@ export const vendorDescription: INodeProperties[] = [
 			dateQueryOption('Updated Before', 'toUpdatedAt', 'to_updated_at', 'Only vendors changed on or before this time'),
 		].sort(byDisplayName),
 	},
+	...vendorGeneratedProperties,
 ];

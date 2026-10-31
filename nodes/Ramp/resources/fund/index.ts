@@ -10,6 +10,7 @@ import {
 	recordLocator,
 } from '../../shared/descriptions';
 import { operation, operationSelector } from '../../shared/operations';
+import { fundGeneratedOperations, fundGeneratedProperties } from '../generated/fund';
 
 const RESOURCE = 'fund';
 
@@ -19,6 +20,7 @@ export const fundDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...fundGeneratedOperations,
 			operation({
 				name: 'Get',
 				value: 'get',
@@ -172,4 +174,5 @@ export const fundDescription: INodeProperties[] = [
 			),
 		].sort(byDisplayName),
 	},
+	...fundGeneratedProperties,
 ];

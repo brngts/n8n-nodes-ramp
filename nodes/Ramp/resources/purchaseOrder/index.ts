@@ -12,6 +12,7 @@ import {
 } from '../../shared/descriptions';
 import { operation, operationSelector } from '../../shared/operations';
 import { setJsonArrayBodyProperty } from '../../shared/preSend';
+import { purchaseOrderGeneratedOperations, purchaseOrderGeneratedProperties } from '../generated/purchaseOrder';
 
 const RESOURCE = 'purchaseOrder';
 
@@ -66,6 +67,7 @@ export const purchaseOrderDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...purchaseOrderGeneratedOperations,
 			operation({
 				name: 'Archive',
 				value: 'archive',
@@ -325,4 +327,5 @@ export const purchaseOrderDescription: INodeProperties[] = [
 			),
 		].sort(byDisplayName),
 	},
+	...purchaseOrderGeneratedProperties,
 ];

@@ -7,6 +7,7 @@ import {
 	recordLocator,
 } from '../../shared/descriptions';
 import { operation, operationSelector } from '../../shared/operations';
+import { receiptGeneratedOperations, receiptGeneratedProperties } from '../generated/receipt';
 
 const RESOURCE = 'receipt';
 
@@ -29,6 +30,7 @@ export const receiptDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...receiptGeneratedOperations,
 			operation({
 				name: 'Get',
 				value: 'get',
@@ -76,4 +78,5 @@ export const receiptDescription: INodeProperties[] = [
 			includeOcrData(),
 		].sort(byDisplayName),
 	},
+	...receiptGeneratedProperties,
 ];

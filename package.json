@@ -1,7 +1,7 @@
 {
 	"name": "n8n-nodes-ramp-api",
-	"version": "0.1.0",
-	"description": "n8n community node for Ramp: transactions, bills, vendors, purchase orders, cards, funds, users and webhooks",
+	"version": "0.2.0",
+	"description": "n8n community node for the full Ramp Developer API: spend, bills, payments, procurement, accounting, custom records and webhooks",
 	"license": "MIT",
 	"homepage": "https://github.com/brngts/n8n-nodes-ramp#readme",
 	"bugs": {
@@ -13,6 +13,7 @@
 		"spend-management",
 		"corporate-cards",
 		"accounts-payable",
+		"procurement",
 		"expenses"
 	],
 	"author": {
@@ -31,6 +32,7 @@
 		"lint:fix": "n8n-node lint --fix",
 		"test": "vitest run",
 		"sync:openapi": "node scripts/sync-openapi.mjs",
+		"generate": "node scripts/generate-resources.mjs && prettier --write \"nodes/Ramp/resources/generated/*.ts\"",
 		"release": "n8n-node release",
 		"prepublishOnly": "n8n-node prerelease"
 	},

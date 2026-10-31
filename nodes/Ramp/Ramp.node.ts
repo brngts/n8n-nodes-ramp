@@ -10,6 +10,7 @@ import {
 	getVendors,
 } from './listSearch';
 import { billDescription } from './resources/bill';
+import { GENERATED_RESOURCE_OPTIONS, generatedDescriptions } from './resources/generated';
 import { cardDescription } from './resources/card';
 import { departmentDescription } from './resources/department';
 import { entityDescription } from './resources/entity';
@@ -30,7 +31,7 @@ export class Ramp implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Work with transactions, bills, vendors, cards, funds and users in Ramp spend management',
+		description: 'Work with every part of the Ramp API: spend, bills, payments, procurement, accounting and more',
 		defaults: {
 			name: 'Ramp',
 		},
@@ -68,7 +69,8 @@ export class Ramp implements INodeType {
 					{ name: 'Transaction', value: 'transaction' },
 					{ name: 'User', value: 'user' },
 					{ name: 'Vendor', value: 'vendor' },
-				],
+					...GENERATED_RESOURCE_OPTIONS,
+				].sort((a, b) => a.name.localeCompare(b.name)),
 				default: 'transaction',
 			},
 			...billDescription,
@@ -82,6 +84,7 @@ export class Ramp implements INodeType {
 			...transactionDescription,
 			...userDescription,
 			...vendorDescription,
+			...generatedDescriptions,
 		],
 	};
 

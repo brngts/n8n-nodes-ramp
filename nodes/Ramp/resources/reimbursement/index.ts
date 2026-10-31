@@ -8,6 +8,7 @@ import {
 } from '../../shared/descriptions';
 import { operation, operationSelector } from '../../shared/operations';
 import { REIMBURSEMENT_STATE_OPTIONS, SYNC_STATUS_OPTIONS } from '../../shared/options';
+import { reimbursementGeneratedOperations, reimbursementGeneratedProperties } from '../generated/reimbursement';
 
 const RESOURCE = 'reimbursement';
 
@@ -17,6 +18,7 @@ export const reimbursementDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...reimbursementGeneratedOperations,
 			operation({
 				name: 'Get',
 				value: 'get',
@@ -131,4 +133,5 @@ export const reimbursementDescription: INodeProperties[] = [
 			queryOption({ displayName: 'Trip ID', name: 'tripId', type: 'string', default: '' }, 'trip_id'),
 		].sort(byDisplayName),
 	},
+	...reimbursementGeneratedProperties,
 ];

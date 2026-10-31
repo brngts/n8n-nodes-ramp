@@ -11,6 +11,7 @@ import {
 import { operation, operationSelector } from '../../shared/operations';
 import { SYNC_STATUS_OPTIONS } from '../../shared/options';
 import { setJsonArrayBodyProperty } from '../../shared/preSend';
+import { transactionGeneratedOperations, transactionGeneratedProperties } from '../generated/transaction';
 
 const RESOURCE = 'transaction';
 
@@ -41,6 +42,7 @@ export const transactionDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...transactionGeneratedOperations,
 			operation({
 				name: 'Get',
 				value: 'get',
@@ -352,4 +354,5 @@ export const transactionDescription: INodeProperties[] = [
 			sortOption,
 		].sort(byDisplayName),
 	},
+	...transactionGeneratedProperties,
 ];

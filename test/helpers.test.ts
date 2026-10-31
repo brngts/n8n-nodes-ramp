@@ -1,6 +1,13 @@
-import type { DeclarativeRestApiSettings, IExecutePaginationFunctions, IHttpRequestOptions, INode } from 'n8n-workflow';
+import type {
+	DeclarativeRestApiSettings,
+	IExecutePaginationFunctions,
+	IExecuteSingleFunctions,
+	IHttpRequestOptions,
+	INode,
+} from 'n8n-workflow';
 import { describe, expect, it, vi } from 'vitest';
 import { readApiError, toRampError } from '../nodes/Ramp/shared/errors';
+import { toMultipartBody } from '../nodes/Ramp/shared/preSend';
 import { sendRampRequest } from '../nodes/Ramp/shared/request';
 
 const node: INode = {
@@ -142,5 +149,74 @@ describe('sendRampRequest', () => {
 			axiosLikeError(422, { error_v2: { message: 'invoice_number is required' } }),
 		);
 		await expect(sendRampRequest('record').call(context, listRequest())).rejects.toThrow('invoice_number is required');
+	});
+});
+
+describe('sendRampRequest for other response shapes', () => {
+	it('pages POST lists through the body cursor', async () => {
+		const { context, calls } = paginationContext({ returnAll: true }, [
+			{ data: [{ id: 'a1' }], page: { next: 'https://api.ramp.com/developer/v1/vendors/agreements?start=a1' } },
+			{ data: [{ id: 'a2' }], page: { next: null } },
+		]);
+		const request = {
+			...listRequest(),
+			options: { url: '/vendors/agreements', method: 'POST', body: { is_active: true } },
+		} as unknown as DeclarativeRestApiSettings.ResultOptions;
+		const items = await sendRampRequest({ output: 'list', pageIn: 'body' }).call(context, request);
+		expect(items.map((item) => item.json.id)).toEqual(['a1', 'a2']);
+		expect(calls[0].body).toEqual({ is_active: true, page_size: 100 });
+		expect(calls[1].body).toEqual({ is_active: true, page_size: 100, start: 'a1' });
+	});
+
+	it('follows page.next without sending page_size where the list takes none', async () => {
+		const { context, calls } = paginationContext({ returnAll: true }, [{ data: [{ id: 't1' }], page: { next: null } }]);
+		await sendRampRequest({ output: 'list', pageIn: 'none' }).call(context, listRequest());
+		expect(calls[0].qs).toEqual({});
+	});
+
+	it('returns an unexpected list shape as is instead of dropping it', async () => {
+		const { context } = paginationContext({ returnAll: true }, [{ requests: [{ id: 'r1' }] }]);
+		expect(await sendRampRequest('list').call(context, listRequest())).toEqual([{ json: { requests: [{ id: 'r1' }] } }]);
+	});
+
+	it('downloads a file as binary data', async () => {
+		const { context, calls } = paginationContext({ binaryPropertyName: 'pdf' }, [
+			{ body: Buffer.from('%PDF-1.7'), headers: { 'content-type': 'application/pdf' }, statusCode: 200 },
+		]);
+		const prepareBinaryData = vi.fn(async (buffer: Buffer, fileName: string, mimeType: string) => ({
+			data: buffer.toString('base64'),
+			fileName,
+			mimeType,
+		}));
+		Object.assign(context.helpers, { prepareBinaryData });
+		const items = await sendRampRequest({ output: 'binary', fileName: 'remittance-receipt' }).call(context, listRequest());
+		expect(calls[0]).toMatchObject({ encoding: 'arraybuffer', json: false, returnFullResponse: true });
+		expect(prepareBinaryData).toHaveBeenCalledWith(Buffer.from('%PDF-1.7'), 'remittance-receipt-file.pdf', 'application/pdf');
+		expect(Object.keys(items[0].binary ?? {})).toEqual(['pdf']);
+	});
+});
+
+describe('toMultipartBody', () => {
+	it('encodes form fields and the input file with an explicit boundary', async () => {
+		const file = Buffer.from('receipt-bytes');
+		const context = {
+			getNodeParameter: () => 'data',
+			helpers: {
+				assertBinaryData: () => ({ fileName: 'lunch.pdf', mimeType: 'application/pdf', data: '' }),
+				getBinaryDataBuffer: async () => file,
+			},
+		} as unknown as IExecuteSingleFunctions;
+		const options = await toMultipartBody([{ field: 'receipt', parameter: 'receiptBinaryPropertyName' }]).call(context, {
+			url: '/receipts',
+			headers: { 'Content-Type': 'application/json' },
+			body: { user_id: 'u1', idempotency_key: 'k1' },
+		});
+		const contentType = String(options.headers?.['Content-Type']);
+		expect(contentType).toMatch(/^multipart\/form-data; boundary=/);
+		const boundary = contentType.split('boundary=')[1];
+		const text = (options.body as Buffer).toString();
+		expect(text).toContain(`--${boundary}\r\nContent-Disposition: form-data; name="user_id"\r\n\r\nu1\r\n`);
+		expect(text).toContain('name="receipt"; filename="lunch.pdf"\r\nContent-Type: application/pdf\r\n\r\nreceipt-bytes\r\n');
+		expect(text.endsWith(`--${boundary}--\r\n`)).toBe(true);
 	});
 });

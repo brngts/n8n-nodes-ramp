@@ -4,6 +4,7 @@ import { DEFAULT_SCOPES } from '../credentials/RampOAuth2Api.credentials';
 import { Ramp } from '../nodes/Ramp/Ramp.node';
 import { RampTrigger } from '../nodes/RampTrigger/RampTrigger.node';
 import rampPaths from './fixtures/ramp-paths.json';
+import { EXCLUDED_ENDPOINTS } from '../scripts/endpoints.mjs';
 
 const node = new Ramp();
 const { properties } = node.description;
@@ -123,7 +124,7 @@ const resourceValues = (properties.find((property) => property.name === 'resourc
 
 describe('Ramp node description', () => {
 	it('sends every operation through sendRampRequest', () => {
-		expect(resourceValues.length).toBe(11);
+		expect(resourceValues.length).toBe(51);
 		for (const resource of resourceValues) {
 			const operations = operationsFor(resource);
 			expect(operations.length, resource).toBeGreaterThan(0);
@@ -169,17 +170,39 @@ describe('Ramp node description', () => {
 		}
 	});
 
+	it('covers every endpoint in the Ramp spec, apart from the ones excluded on purpose', () => {
+		const covered = new Set<string>();
+		for (const resource of resourceValues) {
+			for (const operation of operationsFor(resource)) {
+				const { url, method } = operation.routing?.request ?? {};
+				for (const { url: concrete } of concreteUrls(String(url))) {
+					const path = specPathFor(concrete);
+					if (path) covered.add(`${String(method)} ${path}`);
+				}
+			}
+		}
+		const missing = Object.entries(documented)
+			.flatMap(([path, methods]) => Object.keys(methods).map((method) => `${method} ${path}`))
+			.filter((endpoint) => !covered.has(endpoint) && !(endpoint in EXCLUDED_ENDPOINTS));
+		expect(missing).toEqual([]);
+		for (const endpoint of Object.keys(EXCLUDED_ENDPOINTS)) {
+			expect(covered.has(endpoint), `${endpoint} is excluded but also implemented`).toBe(false);
+		}
+	});
+
 	it('only sends query and body parameters the endpoint accepts', () => {
 		const problems: string[] = [];
 		let checked = 0;
 		for (const resource of resourceValues) {
 			for (const operation of operationsFor(resource)) {
 				const { url, method } = operation.routing?.request ?? {};
-				const isList = String(operation.value) === 'getAll';
+				const settings = (operation.routing?.operations?.pagination as { settings?: { output: string; pageIn: string } })?.settings;
+				const sendsPageSize = settings?.output === 'list' && settings.pageIn !== 'none';
+				const pageSizeType = settings?.pageIn === 'body' ? ('body' as const) : ('query' as const);
 				for (const { url: concrete, bindings } of concreteUrls(String(url))) {
 					const sent = [
 						...parametersSentBy(resource, operation, bindings),
-						...(isList ? PAGINATION_QUERY.map((property) => ({ type: 'query' as const, property })) : []),
+						...(sendsPageSize ? PAGINATION_QUERY.map((property) => ({ type: pageSizeType, property })) : []),
 					];
 					const accepted = documented[String(specPathFor(concrete))]?.[String(method)];
 					if (!accepted) continue; // covered by the endpoint test above

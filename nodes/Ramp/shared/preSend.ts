@@ -84,3 +84,109 @@ export function ensureIdempotencyKey(
 	requestOptions.body = body;
 	return Promise.resolve(requestOptions);
 }
+
+/**
+ * Sends a JSON parameter as a single body property, for a required nested
+ * value such as a list of line items or an address.
+ */
+export function setJsonBodyValue(parameterName: string, bodyProperty: string, label: string, kind: 'object' | 'array') {
+	return async function (
+		this: IExecuteSingleFunctions,
+		requestOptions: IHttpRequestOptions,
+	): Promise<IHttpRequestOptions> {
+		const raw = this.getNodeParameter(parameterName, kind === 'array' ? '[]' : '{}');
+		const value = kind === 'array' ? parseJsonArray(this, raw, label) : parseJsonObject(this, raw, label);
+		requestOptions.body = { ...((requestOptions.body ?? {}) as IDataObject), [bodyProperty]: value };
+		return requestOptions;
+	};
+}
+
+/** Splits a comma-separated parameter into a list for a body property that takes an array of strings. */
+export function setListBodyValue(parameterName: string, bodyProperty: string) {
+	return async function (
+		this: IExecuteSingleFunctions,
+		requestOptions: IHttpRequestOptions,
+	): Promise<IHttpRequestOptions> {
+		const raw = this.getNodeParameter(parameterName, '') as string | string[];
+		const values = (Array.isArray(raw) ? raw : String(raw).split(','))
+			.map((value) => String(value).trim())
+			.filter((value) => value !== '');
+		const body = (requestOptions.body ?? {}) as IDataObject;
+		requestOptions.body = values.length > 0 ? { ...body, [bodyProperty]: values } : body;
+		return requestOptions;
+	};
+}
+
+/**
+ * Sends `X-Idempotency-Key`, which some create endpoints accept or require.
+ * Without a value from the workflow, every item gets a fresh key.
+ */
+export function setIdempotencyHeader(parameterName: string) {
+	return async function (
+		this: IExecuteSingleFunctions,
+		requestOptions: IHttpRequestOptions,
+	): Promise<IHttpRequestOptions> {
+		const value = String(this.getNodeParameter(parameterName, '') ?? '').trim();
+		requestOptions.headers = { ...(requestOptions.headers ?? {}), 'X-Idempotency-Key': value || randomUUID() };
+		return requestOptions;
+	};
+}
+
+type FilePart = {
+	/** Form field Ramp expects the file under, such as `file` or `receipt`. */
+	field: string;
+	/** Node parameter holding the input binary field name(s), comma-separated for several files. */
+	parameter: string;
+};
+
+/**
+ * Turns the routed body into `multipart/form-data` for upload endpoints. The
+ * body is encoded here, with an explicit boundary, so the request does not
+ * depend on how the HTTP client treats form objects. Text fields are sent as
+ * strings, nested values as JSON.
+ */
+export function toMultipartBody(files: FilePart[]) {
+	return async function (
+		this: IExecuteSingleFunctions,
+		requestOptions: IHttpRequestOptions,
+	): Promise<IHttpRequestOptions> {
+		const boundary = `----n8nRampBoundary${randomUUID().replace(/-/g, '')}`;
+		const parts: Buffer[] = [];
+		const fields = (requestOptions.body ?? {}) as IDataObject;
+
+		for (const [name, value] of Object.entries(fields)) {
+			if (value === undefined || value === null) continue;
+			const text = typeof value === 'object' ? JSON.stringify(value) : String(value);
+			parts.push(
+				Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="${name}"\r\n\r\n${text}\r\n`),
+			);
+		}
+
+		for (const { field, parameter } of files) {
+			const names = String(this.getNodeParameter(parameter, 'data'))
+				.split(',')
+				.map((name) => name.trim())
+				.filter((name) => name !== '');
+			for (const binaryPropertyName of names) {
+				const binary = this.helpers.assertBinaryData(binaryPropertyName);
+				const buffer = await this.helpers.getBinaryDataBuffer(binaryPropertyName);
+				const fileName = (binary.fileName ?? `${field}.${binary.fileExtension ?? 'bin'}`).replace(/"/g, '');
+				parts.push(
+					Buffer.from(
+						`--${boundary}\r\nContent-Disposition: form-data; name="${field}"; filename="${fileName}"\r\nContent-Type: ${binary.mimeType || 'application/octet-stream'}\r\n\r\n`,
+					),
+					buffer,
+					Buffer.from('\r\n'),
+				);
+			}
+		}
+
+		parts.push(Buffer.from(`--${boundary}--\r\n`));
+		requestOptions.body = Buffer.concat(parts);
+		requestOptions.headers = {
+			...(requestOptions.headers ?? {}),
+			'Content-Type': `multipart/form-data; boundary=${boundary}`,
+		};
+		return requestOptions;
+	};
+}

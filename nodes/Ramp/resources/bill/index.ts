@@ -14,6 +14,7 @@ import {
 import { operation, operationSelector } from '../../shared/operations';
 import { BILL_STATUS_SUMMARY_OPTIONS, PAYMENT_METHOD_OPTIONS } from '../../shared/options';
 import { setJsonArrayBodyProperty } from '../../shared/preSend';
+import { billGeneratedOperations, billGeneratedProperties } from '../generated/bill';
 
 const RESOURCE = 'bill';
 
@@ -108,6 +109,7 @@ export const billDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...billGeneratedOperations,
 			operation({
 				name: 'Archive',
 				value: 'archive',
@@ -504,4 +506,5 @@ export const billDescription: INodeProperties[] = [
 			),
 		].sort(byDisplayName),
 	},
+	...billGeneratedProperties,
 ];

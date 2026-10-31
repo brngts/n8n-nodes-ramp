@@ -10,6 +10,7 @@ import {
 import { operation, operationSelector } from '../../shared/operations';
 import { USER_ROLE_OPTIONS } from '../../shared/options';
 import { ensureIdempotencyKey } from '../../shared/preSend';
+import { userGeneratedOperations, userGeneratedProperties } from '../generated/user';
 
 const RESOURCE = 'user';
 
@@ -56,6 +57,7 @@ export const userDescription: INodeProperties[] = [
 	operationSelector(
 		RESOURCE,
 		[
+			...userGeneratedOperations,
 			operation({
 				name: 'Deactivate',
 				value: 'deactivate',
@@ -241,4 +243,5 @@ export const userDescription: INodeProperties[] = [
 			queryOption({ displayName: 'Location ID', name: 'locationId', type: 'string', default: '' }, 'location_id'),
 		].sort(byDisplayName),
 	},
+	...userGeneratedProperties,
 ];
