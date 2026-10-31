@@ -1,0 +1,19 @@
+{
+	"node": "n8n-nodes-ramp-api.ramp",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Finance & Accounting"],
+	"alias": ["Spend management", "Corporate cards", "Expenses", "Bill pay", "AP", "Reimbursements"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.ramp.com/developer-api/v1/authorization"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://docs.ramp.com/developer-api/v1/introduction"
+			}
+		]
+	}
+}

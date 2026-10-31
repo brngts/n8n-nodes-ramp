@@ -1,0 +1,67 @@
+{
+	"name": "n8n-nodes-ramp-api",
+	"version": "0.1.0",
+	"description": "n8n community node for Ramp: transactions, bills, vendors, purchase orders, cards, funds, users and webhooks",
+	"license": "MIT",
+	"homepage": "https://github.com/brngts/n8n-nodes-ramp#readme",
+	"bugs": {
+		"url": "https://github.com/brngts/n8n-nodes-ramp/issues"
+	},
+	"keywords": [
+		"n8n-community-node-package",
+		"ramp",
+		"spend-management",
+		"corporate-cards",
+		"accounts-payable",
+		"expenses"
+	],
+	"author": {
+		"name": "Brajan Gatys",
+		"email": "brajan.gatys@n8n.io"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/brngts/n8n-nodes-ramp.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "vitest run",
+		"sync:openapi": "node scripts/sync-openapi.mjs",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/RampOAuth2Api.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Ramp/Ramp.node.js",
+			"dist/nodes/RampTrigger/RampTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "^0.54.5",
+		"eslint": "9.32.0",
+		"n8n-workflow": "*",
+		"prettier": "3.6.2",
+		"release-it": "^21.1.0",
+		"typescript": "5.9.2",
+		"vitest": "^5.0.5"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}

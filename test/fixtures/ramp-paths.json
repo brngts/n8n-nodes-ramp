@@ -1,0 +1,2881 @@
+{
+	"/accounting/accounts": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"code",
+				"is_active",
+				"is_synced",
+				"page_size",
+				"remote_id",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"gl_accounts"
+			]
+		}
+	},
+	"/accounting/accounts/{gl_account_id}": {
+		"GET": {
+			"query": [
+				"accounting_connection_id"
+			],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"code",
+				"entity_remote_ids",
+				"name",
+				"reactivate",
+				"visibility"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/all-connections": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/accounting/codings": {
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_coding_selections",
+				"object_id",
+				"object_type"
+			]
+		}
+	},
+	"/accounting/connection": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"reactivate",
+				"remote_provider_name",
+				"settings",
+				"settings.entity_selection_enabled",
+				"settings.reimbursement_sync_button_enabled",
+				"settings.transaction_accounting_vendor_creation_on_sync_enabled",
+				"settings.transaction_sync_button_enabled",
+				"settings.vendor_credits_enabled"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/accounting/connection/{connection_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"settings",
+				"settings.entity_selection_enabled",
+				"settings.reimbursement_sync_button_enabled",
+				"settings.transaction_accounting_vendor_creation_on_sync_enabled",
+				"settings.transaction_sync_button_enabled",
+				"settings.vendor_credits_enabled"
+			]
+		}
+	},
+	"/accounting/connection/{connection_id}/reactivate": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/accounting/connection/{connection_id}/ready-to-migrate": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/accounting/entities": {
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"entities"
+			]
+		}
+	},
+	"/accounting/field-option-filter-rules": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"page_size",
+				"start",
+				"target_field_option_remote_id",
+				"target_field_remote_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"rules"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"rules"
+			]
+		}
+	},
+	"/accounting/field-options": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"code",
+				"field_id",
+				"field_remote_id",
+				"is_active",
+				"page_size",
+				"remote_id",
+				"start",
+				"visibility"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"field_id",
+				"options"
+			]
+		}
+	},
+	"/accounting/field-options/{field_option_id}": {
+		"GET": {
+			"query": [
+				"accounting_connection_id"
+			],
+			"body": []
+		},
+		"PUT": {
+			"query": [],
+			"body": [
+				"code",
+				"display_name",
+				"entity_remote_ids",
+				"reactivate",
+				"value",
+				"visibility"
+			]
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"code",
+				"display_name",
+				"entity_remote_ids",
+				"reactivate",
+				"value",
+				"visibility"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/fields": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"is_active",
+				"page_size",
+				"remote_id",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"id",
+				"input_type",
+				"is_required_for",
+				"is_splittable",
+				"name"
+			]
+		}
+	},
+	"/accounting/fields/{field_id}": {
+		"GET": {
+			"query": [
+				"accounting_connection_id"
+			],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"is_splittable",
+				"name"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/inventory-item": {
+		"GET": {
+			"query": [
+				"accounting_connection_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"name"
+			]
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"name"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/inventory-item/options": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"code",
+				"is_active",
+				"is_synced",
+				"page_size",
+				"remote_id",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"options"
+			]
+		}
+	},
+	"/accounting/inventory-item/options/{option_id}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"entity_remote_ids",
+				"gl_account_id",
+				"name",
+				"reactivate"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/ramp-field-options": {
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"field_id",
+				"options"
+			]
+		}
+	},
+	"/accounting/ramp-field-options/{field_option_id}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"code",
+				"display_name",
+				"reactivate",
+				"value",
+				"visibility"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/ramp-fields": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"is_active",
+				"page_size",
+				"remote_id",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"id",
+				"input_type",
+				"is_required_for",
+				"is_splittable",
+				"name"
+			]
+		}
+	},
+	"/accounting/ramp-fields/{field_id}": {
+		"GET": {
+			"query": [
+				"accounting_connection_id"
+			],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"is_splittable",
+				"name"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/ready-to-sync": {
+		"POST": {
+			"query": [],
+			"body": [
+				"object_ids",
+				"object_type"
+			]
+		}
+	},
+	"/accounting/syncs": {
+		"POST": {
+			"query": [],
+			"body": [
+				"failed_syncs",
+				"idempotency_key",
+				"mark_ready_to_sync",
+				"successful_syncs",
+				"sync_request_id",
+				"sync_type"
+			]
+		}
+	},
+	"/accounting/tax/code": {
+		"GET": {
+			"query": [
+				"accounting_connection_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"name"
+			]
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"display_name",
+				"name"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/tax/code/options": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"code",
+				"is_active",
+				"is_synced",
+				"page_size",
+				"remote_id",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"options"
+			]
+		}
+	},
+	"/accounting/tax/code/options/{option_id}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"entity_remote_ids",
+				"name",
+				"tax_rate_ids"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/tax/rates": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"page_size",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"tax_rates"
+			]
+		}
+	},
+	"/accounting/tax/rates/{tax_rate_id}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"accounting_gl_account_id",
+				"name",
+				"rate"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/accounting/vendors": {
+		"GET": {
+			"query": [
+				"accounting_connection_id",
+				"code",
+				"is_active",
+				"is_synced",
+				"page_size",
+				"remote_id",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"vendors"
+			]
+		}
+	},
+	"/accounting/vendors/{vendor_id}": {
+		"GET": {
+			"query": [
+				"accounting_connection_id"
+			],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_connection_id",
+				"code",
+				"entity_remote_ids",
+				"name",
+				"reactivate"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"accounting_connection_id"
+			]
+		}
+	},
+	"/ai-spend/api-keys": {
+		"GET": {
+			"query": [
+				"from_date",
+				"page_size",
+				"providers",
+				"start",
+				"statuses",
+				"to_date"
+			],
+			"body": []
+		}
+	},
+	"/ai-spend/settings": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PUT": {
+			"query": [],
+			"body": [
+				"router_tag_keys"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/ai-spend/tagging-settings": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PUT": {
+			"query": [],
+			"body": [
+				"config",
+				"config.exclusions",
+				"config.taxonomies",
+				"expected_version"
+			]
+		}
+	},
+	"/ai-spend/team": {
+		"GET": {
+			"query": [
+				"from_date",
+				"is_anomalous",
+				"page_size",
+				"providers",
+				"start",
+				"to_date"
+			],
+			"body": []
+		}
+	},
+	"/ai-spend/usage": {
+		"GET": {
+			"query": [
+				"from_date",
+				"group_by",
+				"models",
+				"page_size",
+				"products",
+				"providers",
+				"start",
+				"to_date"
+			],
+			"body": []
+		}
+	},
+	"/applications": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"applicant",
+				"applicant.email",
+				"applicant.first_name",
+				"applicant.last_name",
+				"applicant.phone",
+				"application_type",
+				"beneficial_owners",
+				"business",
+				"business.address",
+				"business.business_description",
+				"business.business_name_dba",
+				"business.business_name_legal",
+				"business.business_name_on_card",
+				"business.business_website",
+				"business.incorporation",
+				"business.phone",
+				"controlling_officer",
+				"controlling_officer.address",
+				"controlling_officer.birth_date",
+				"controlling_officer.email",
+				"controlling_officer.first_name",
+				"controlling_officer.is_beneficial_owner",
+				"controlling_officer.last_name",
+				"controlling_officer.ownership_percentage",
+				"controlling_officer.passport_last_4",
+				"controlling_officer.phone",
+				"controlling_officer.ssn_last_4",
+				"controlling_officer.title",
+				"country",
+				"financial_details",
+				"financial_details.estimated_monthly_ap_spend_amount",
+				"financial_details.estimated_monthly_spend_amount",
+				"lead_referral_partner_channel",
+				"lead_referral_partner_code",
+				"manual_bank_account",
+				"manual_bank_account.account_number",
+				"manual_bank_account.account_subtype",
+				"manual_bank_account.balance",
+				"manual_bank_account.routing_number",
+				"oauth_authorize_params",
+				"oauth_authorize_params.code_challenge",
+				"oauth_authorize_params.redirect_uri",
+				"oauth_authorize_params.state",
+				"ownership_acknowledgement"
+			]
+		}
+	},
+	"/approvals": {
+		"GET": {
+			"query": [
+				"entity_ids",
+				"entity_type",
+				"page_size",
+				"start"
+			],
+			"body": []
+		}
+	},
+	"/approvals/{entity_type}/{entity_id}/add-step": {
+		"POST": {
+			"query": [],
+			"body": [
+				"approver_groups",
+				"reason",
+				"step_order",
+				"step_type"
+			]
+		}
+	},
+	"/audit-logs/events": {
+		"GET": {
+			"query": [
+				"agent_names",
+				"event_actor_types",
+				"event_types",
+				"from_date",
+				"object_id",
+				"page_size",
+				"resource_name",
+				"start",
+				"to_date",
+				"user_ids"
+			],
+			"body": []
+		}
+	},
+	"/bank-accounts": {
+		"GET": {
+			"query": [
+				"connection_provider",
+				"page_size",
+				"start"
+			],
+			"body": []
+		}
+	},
+	"/bank-accounts/{bank_account_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/banking/accounts": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		}
+	},
+	"/banking/accounts/{account_id}/balance-history": {
+		"GET": {
+			"query": [
+				"end_date",
+				"page_size",
+				"start",
+				"start_date"
+			],
+			"body": []
+		}
+	},
+	"/banking/syncable-transactions": {
+		"GET": {
+			"query": [
+				"end_date",
+				"entity_ids",
+				"include_synced_transfers",
+				"page_size",
+				"start",
+				"start_date"
+			],
+			"body": []
+		}
+	},
+	"/billing/statements": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start",
+				"statement_period_end",
+				"statement_period_start"
+			],
+			"body": []
+		}
+	},
+	"/bills": {
+		"GET": {
+			"query": [
+				"accounting_field_selection_id",
+				"approval_status",
+				"customer_friendly_payment_id",
+				"draft_bill_id",
+				"entity_id",
+				"from_created_at",
+				"from_due_date",
+				"from_issued_date",
+				"from_paid_at",
+				"from_payment_date",
+				"invoice_number",
+				"is_accounting_sync_enabled",
+				"is_archived",
+				"is_payment_sync_ready",
+				"max_amount",
+				"min_amount",
+				"page_size",
+				"payment_details_missing",
+				"payment_id",
+				"payment_method",
+				"payment_status",
+				"purchase_order_id",
+				"remote_id",
+				"start",
+				"status_summaries",
+				"sync_ready",
+				"sync_status",
+				"to_created_at",
+				"to_due_date",
+				"to_issued_date",
+				"to_paid_at",
+				"to_payment_date",
+				"vendor_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"attachment_id",
+				"due_at",
+				"enable_accounting_sync",
+				"entity_id",
+				"inventory_line_items",
+				"invoice_currency",
+				"invoice_number",
+				"issued_at",
+				"line_items",
+				"memo",
+				"payment_date",
+				"payment_details",
+				"payment_details.is_same_day",
+				"payment_details.manual_payment_method",
+				"payment_details.payment_arrival_date",
+				"payment_details.payment_date",
+				"payment_details.source_bank_account_id",
+				"payment_details.spend_limit_id",
+				"payment_details.transaction_id",
+				"payment_details.vendor_account_id",
+				"payment_method",
+				"posting_date",
+				"purchase_order_ids",
+				"remote_id",
+				"target_payment_arrival_date",
+				"use_default_payment_method",
+				"use_default_vendor_contact",
+				"vendor_contact_id",
+				"vendor_id",
+				"vendor_memo"
+			]
+		}
+	},
+	"/bills/drafts": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"from_created_at",
+				"from_due_date",
+				"from_issued_date",
+				"invoice_number",
+				"page_size",
+				"remote_id",
+				"start",
+				"to_created_at",
+				"to_due_date",
+				"to_issued_date",
+				"vendor_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"due_at",
+				"enable_accounting_sync",
+				"entity_id",
+				"inventory_line_items",
+				"invoice_currency",
+				"invoice_number",
+				"issued_at",
+				"line_items",
+				"memo",
+				"payment_method",
+				"posting_date",
+				"purchase_order_ids",
+				"remote_id",
+				"use_default_payment_method",
+				"vendor_contact_id",
+				"vendor_id",
+				"vendor_memo"
+			]
+		}
+	},
+	"/bills/drafts/{draft_bill_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"due_at",
+				"enable_accounting_sync",
+				"entity_id",
+				"inventory_line_items",
+				"invoice_currency",
+				"invoice_number",
+				"issued_at",
+				"line_items",
+				"memo",
+				"payment_method",
+				"posting_date",
+				"purchase_order_ids",
+				"remote_id",
+				"use_default_payment_method",
+				"vendor_contact_id",
+				"vendor_id",
+				"vendor_memo"
+			]
+		}
+	},
+	"/bills/drafts/{draft_bill_id}/attachments": {
+		"POST": {
+			"query": [],
+			"body": [
+				"attachment_type",
+				"file"
+			]
+		}
+	},
+	"/bills/drafts/{draft_bill_id}/submit": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/bills/{bill_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"due_at",
+				"entity_id",
+				"inventory_line_items",
+				"invoice_number",
+				"issued_at",
+				"line_items",
+				"memo",
+				"payment_date",
+				"payment_method",
+				"posting_date",
+				"purchase_order_ids",
+				"remote_id",
+				"vendor_contact_id",
+				"vendor_id",
+				"vendor_memo"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/bills/{bill_id}/associations": {
+		"POST": {
+			"query": [],
+			"body": [
+				"bill_id",
+				"label",
+				"reverse_label"
+			]
+		}
+	},
+	"/bills/{bill_id}/associations/{associated_bill_id}": {
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/bills/{bill_id}/attachments": {
+		"POST": {
+			"query": [],
+			"body": [
+				"attachment_type",
+				"file"
+			]
+		}
+	},
+	"/bills/{bill_id}/hold": {
+		"POST": {
+			"query": [],
+			"body": [
+				"reason"
+			]
+		}
+	},
+	"/bills/{bill_id}/release": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/bills/{bill_id}/remittance-receipt": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/blank-canvas-approvals/documents": {
+		"POST": {
+			"query": [],
+			"body": [
+				"unified_request_id",
+				"vendor_document_category"
+			]
+		}
+	},
+	"/blank-canvas-approvals/{approval_trigger_instance_id}": {
+		"POST": {
+			"query": [],
+			"body": [
+				"action"
+			]
+		}
+	},
+	"/blank-canvas-approvals/{approval_trigger_instance_id}/metadata": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"recipients",
+				"status",
+				"url"
+			]
+		}
+	},
+	"/business": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/business/balance": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/cards/physical": {
+		"GET": {
+			"query": [
+				"display_name",
+				"include_activated_only",
+				"include_terminated_only",
+				"page_size",
+				"start",
+				"user_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"automatic_routing_enabled",
+				"fund_id",
+				"shipping_address",
+				"shipping_address.address1",
+				"shipping_address.address2",
+				"shipping_address.city",
+				"shipping_address.country",
+				"shipping_address.postal_code",
+				"shipping_address.state",
+				"user_id"
+			]
+		}
+	},
+	"/cards/physical/{card_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"automatic_routing_enabled",
+				"display_name",
+				"fund_id"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/cards/physical/{card_id}/suspension": {
+		"POST": {
+			"query": [],
+			"body": []
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/cards/vault": {
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_rules",
+				"allowed_overage_percent_override",
+				"display_name",
+				"spend_program_id",
+				"spending_restrictions",
+				"spending_restrictions.allowed_categories",
+				"spending_restrictions.allowed_vendors",
+				"spending_restrictions.blocked_categories",
+				"spending_restrictions.blocked_mcc_codes",
+				"spending_restrictions.blocked_vendors",
+				"spending_restrictions.interval",
+				"spending_restrictions.limit",
+				"spending_restrictions.lock_date",
+				"spending_restrictions.transaction_amount_limit",
+				"user_id"
+			]
+		}
+	},
+	"/cards/vault/{card_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/cards/virtual": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"is_terminated",
+				"page_size",
+				"start",
+				"user_id"
+			],
+			"body": []
+		}
+	},
+	"/cards/virtual/{card_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/cashbacks": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"from_date",
+				"page_size",
+				"start",
+				"statement_id",
+				"sync_ready",
+				"sync_status",
+				"to_date"
+			],
+			"body": []
+		}
+	},
+	"/cashbacks/{cashback_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/comments/{object_type}/{object_id}": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"mention_user_ids",
+				"message",
+				"message_format"
+			]
+		}
+	},
+	"/custom-form/collections/responses/{custom_form_collection_response_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/custom-records/configure/custom-tables": {
+		"POST": {
+			"query": [],
+			"body": [
+				"table_label",
+				"table_name",
+				"type"
+			]
+		}
+	},
+	"/custom-records/configure/custom-tables/{custom_table_name}/columns": {
+		"POST": {
+			"query": [],
+			"body": [
+				"column_type_name",
+				"label",
+				"name",
+				"reference_args",
+				"reference_args.cardinality",
+				"reference_args.corresponding_column_label",
+				"reference_args.corresponding_column_name",
+				"reference_args.foreign_table"
+			]
+		}
+	},
+	"/custom-records/configure/custom-tables/{custom_table_name}/columns/{column_name}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"new_name"
+			]
+		}
+	},
+	"/custom-records/configure/native-tables": {
+		"POST": {
+			"query": [],
+			"body": [
+				"table_name",
+				"type"
+			]
+		}
+	},
+	"/custom-records/configure/native-tables/{native_table_name}/columns": {
+		"POST": {
+			"query": [],
+			"body": [
+				"column_type_name",
+				"label",
+				"name",
+				"reference_args",
+				"reference_args.cardinality",
+				"reference_args.corresponding_column_label",
+				"reference_args.corresponding_column_name",
+				"reference_args.foreign_table"
+			]
+		}
+	},
+	"/custom-records/configure/native-tables/{native_table_name}/columns/{column_name}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"new_name"
+			]
+		}
+	},
+	"/custom-records/custom-tables": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/custom-records/custom-tables/{custom_table_name}/columns": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/custom-records/custom-tables/{custom_table_name}/rows": {
+		"GET": {
+			"query": [
+				"external_key",
+				"include_all_referenced_rows",
+				"page_size",
+				"start"
+			],
+			"body": []
+		},
+		"PUT": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		}
+	},
+	"/custom-records/custom-tables/{custom_table_name}/rows/{row_id}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"new_external_key"
+			]
+		}
+	},
+	"/custom-records/custom-tables/{table_name}/rows/-/append": {
+		"POST": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		}
+	},
+	"/custom-records/custom-tables/{table_name}/rows/-/remove": {
+		"POST": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		}
+	},
+	"/custom-records/matrix-tables": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"input_columns",
+				"label",
+				"name",
+				"result_columns"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/columns": {
+		"POST": {
+			"query": [],
+			"body": [
+				"cardinality",
+				"label",
+				"name",
+				"native_table",
+				"native_table.accounting_field_ramp_id",
+				"native_table.table_name",
+				"native_table.type"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/columns/{column_name}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"new_name"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/list-rows": {
+		"POST": {
+			"query": [],
+			"body": [
+				"external_keys",
+				"filters",
+				"page_size",
+				"start"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/rename": {
+		"POST": {
+			"query": [],
+			"body": [
+				"new_name"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/rows": {
+		"PUT": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/rows/-/append": {
+		"POST": {
+			"query": [],
+			"body": [
+				"data",
+				"ignore_duplicates"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/rows/-/remove": {
+		"POST": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		}
+	},
+	"/custom-records/matrix-tables/{table_name}/rows/{row_id}": {
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/custom-records/native-tables": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/custom-records/native-tables/{native_table_name}/columns": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/custom-records/native-tables/{native_table_name}/rows": {
+		"GET": {
+			"query": [
+				"include_all_referenced_rows",
+				"page_size",
+				"ramp_id",
+				"start"
+			],
+			"body": []
+		},
+		"PUT": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		}
+	},
+	"/custom-records/native-tables/{native_table_name}/rows/-/append": {
+		"POST": {
+			"query": [],
+			"body": [
+				"data"
+			]
+		}
+	},
+	"/custom-records/native-tables/{native_table_name}/rows/-/remove": {
+		"POST": {
+			"query": [],
+			"body": [
+				"data",
+				"skip_removing_already_missing"
+			]
+		}
+	},
+	"/departments": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"name"
+			]
+		}
+	},
+	"/departments/{department_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"name"
+			]
+		}
+	},
+	"/embedded/cards/{card_id}/embed": {
+		"POST": {
+			"query": [],
+			"body": [
+				"parent_origin"
+			]
+		}
+	},
+	"/entities": {
+		"GET": {
+			"query": [
+				"currency",
+				"entity_name",
+				"hide_inactive",
+				"include_custom_field_values",
+				"include_deleted_accounts",
+				"is_primary",
+				"page_size",
+				"start"
+			],
+			"body": []
+		}
+	},
+	"/entities/{entity_id}": {
+		"GET": {
+			"query": [
+				"hide_inactive",
+				"include_custom_field_values"
+			],
+			"body": []
+		}
+	},
+	"/funds": {
+		"GET": {
+			"query": [
+				"card_id",
+				"created_after",
+				"created_before",
+				"display_name",
+				"entity_id",
+				"is_terminated",
+				"member_roles",
+				"page_size",
+				"spend_program_id",
+				"start",
+				"user_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_rules",
+				"display_name",
+				"is_exempt_from_policy_agent",
+				"is_shareable",
+				"permitted_spend_types",
+				"permitted_spend_types.physical_card",
+				"permitted_spend_types.reimbursements",
+				"permitted_spend_types.virtual_card",
+				"spend_program_id",
+				"spending_restrictions",
+				"spending_restrictions.allowed_category_codes",
+				"spending_restrictions.allowed_vendor_ids",
+				"spending_restrictions.blocked_category_codes",
+				"spending_restrictions.blocked_mcc_codes",
+				"spending_restrictions.blocked_vendor_ids",
+				"spending_restrictions.convert_to_entity_currency",
+				"spending_restrictions.interval",
+				"spending_restrictions.limit",
+				"spending_restrictions.lock_date",
+				"spending_restrictions.transaction_amount_limit",
+				"user_id"
+			]
+		}
+	},
+	"/funds/{fund_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_rules",
+				"display_name",
+				"is_exempt_from_policy_agent",
+				"is_shareable",
+				"permitted_spend_types",
+				"permitted_spend_types.physical_card",
+				"permitted_spend_types.reimbursements",
+				"permitted_spend_types.virtual_card",
+				"spend_program_id",
+				"spending_restrictions",
+				"spending_restrictions.allowed_category_codes",
+				"spending_restrictions.allowed_vendor_ids",
+				"spending_restrictions.blocked_category_codes",
+				"spending_restrictions.blocked_mcc_codes",
+				"spending_restrictions.blocked_vendor_ids",
+				"spending_restrictions.convert_to_entity_currency",
+				"spending_restrictions.interval",
+				"spending_restrictions.is_temporary_increase",
+				"spending_restrictions.limit",
+				"spending_restrictions.lock_date",
+				"spending_restrictions.transaction_amount_limit"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/funds/{fund_id}/members": {
+		"POST": {
+			"query": [],
+			"body": [
+				"user_ids"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": [
+				"user_ids"
+			]
+		}
+	},
+	"/funds/{fund_id}/members/{user_id}/suspension": {
+		"POST": {
+			"query": [],
+			"body": []
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/funds/{fund_id}/suspension": {
+		"POST": {
+			"query": [],
+			"body": []
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/item-receipts": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"include_archived",
+				"page_size",
+				"purchase_order_id",
+				"purchase_order_line_item_id",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"item_receipt_line_items",
+				"item_receipt_number",
+				"memo",
+				"purchase_order_id",
+				"received_at"
+			]
+		}
+	},
+	"/item-receipts/{item_receipt_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/locations": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"page_size",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"entity_id",
+				"name"
+			]
+		}
+	},
+	"/locations/{location_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"entity_id",
+				"name"
+			]
+		}
+	},
+	"/memos": {
+		"GET": {
+			"query": [
+				"card_id",
+				"department_id",
+				"from_date",
+				"location_id",
+				"manager_id",
+				"merchant_id",
+				"page_size",
+				"start",
+				"to_date",
+				"user_id"
+			],
+			"body": []
+		}
+	},
+	"/memos/{transaction_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"is_memo_recurring",
+				"memo"
+			]
+		}
+	},
+	"/merchants": {
+		"GET": {
+			"query": [
+				"merchant_name",
+				"merchant_url",
+				"page_size",
+				"start",
+				"transaction_from_date",
+				"transaction_to_date"
+			],
+			"body": []
+		}
+	},
+	"/payments": {
+		"GET": {
+			"query": [
+				"external_ref",
+				"include_canceled",
+				"page_size",
+				"start",
+				"status",
+				"vendor_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"amount",
+				"amount.currency",
+				"amount.value",
+				"entity_id",
+				"external_invoice_number",
+				"external_ref",
+				"payment_method",
+				"payment_method.id",
+				"payment_method.type",
+				"scheduled_date",
+				"source_bank_account_id",
+				"vendor_id"
+			]
+		}
+	},
+	"/payments/check-preview": {
+		"POST": {
+			"query": [],
+			"body": [
+				"address_line_1",
+				"address_line_2",
+				"city",
+				"entity_id",
+				"external_invoice_number",
+				"owner_name",
+				"postal_code",
+				"secondary_owner_line",
+				"state"
+			]
+		}
+	},
+	"/payments/{payment_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"amount",
+				"amount.currency",
+				"amount.value",
+				"external_invoice_number",
+				"external_ref",
+				"payment_method",
+				"payment_method.id",
+				"payment_method.type",
+				"scheduled_date",
+				"source_bank_account_id"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/payments/{payment_id}/remittance-receipt": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/payments/{payment_id}/retry": {
+		"POST": {
+			"query": [],
+			"body": [
+				"payment_method",
+				"payment_method.id",
+				"payment_method.type",
+				"source_bank_account_id"
+			]
+		}
+	},
+	"/purchase-orders": {
+		"GET": {
+			"query": [
+				"creation_source",
+				"entity_id",
+				"external_id",
+				"from_created_at",
+				"include_archived",
+				"page_size",
+				"receipt_status",
+				"remote_id",
+				"spend_request_id",
+				"start",
+				"three_way_match_enabled",
+				"to_created_at"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"currency",
+				"entity_id",
+				"external_id",
+				"line_items",
+				"memo",
+				"name",
+				"net_payment_terms",
+				"owner_id",
+				"promise_date",
+				"purchase_order_number",
+				"spend_end_date",
+				"spend_start_date",
+				"three_way_match_enabled",
+				"vendor_id",
+				"withholding_default_rate"
+			]
+		}
+	},
+	"/purchase-orders/{purchase_order_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"memo",
+				"name",
+				"owner_id",
+				"spend_end_date",
+				"spend_start_date",
+				"withholding_default_rate"
+			]
+		}
+	},
+	"/purchase-orders/{purchase_order_id}/archive": {
+		"POST": {
+			"query": [],
+			"body": [
+				"archived_reason"
+			]
+		}
+	},
+	"/purchase-orders/{purchase_order_id}/line-items": {
+		"POST": {
+			"query": [],
+			"body": [
+				"line_items"
+			]
+		}
+	},
+	"/purchase-orders/{purchase_order_id}/line-items/{line_item_id}": {
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"description",
+				"end_date",
+				"start_date",
+				"unit_price",
+				"unit_quantity",
+				"withholding_rate"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/receipt-integrations/opt-out": {
+		"GET": {
+			"query": [],
+			"body": [
+				"email",
+				"id"
+			]
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"business_id",
+				"email"
+			]
+		}
+	},
+	"/receipt-integrations/opt-out/{mailbox_opted_out_email_uuid}": {
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/receipts": {
+		"GET": {
+			"query": [
+				"created_after",
+				"created_before",
+				"from_date",
+				"include_ocr_data",
+				"page_size",
+				"reimbursement_id",
+				"start",
+				"to_date",
+				"transaction_id"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"idempotency_key",
+				"receipt",
+				"transaction_id",
+				"user_id"
+			]
+		}
+	},
+	"/receipts/{receipt_id}": {
+		"GET": {
+			"query": [
+				"include_ocr_data"
+			],
+			"body": []
+		}
+	},
+	"/reimbursements": {
+		"GET": {
+			"query": [
+				"accounting_field_selection_id",
+				"awaiting_approval_by_user_id",
+				"direction",
+				"entity_id",
+				"from_date",
+				"from_submitted_at",
+				"from_transaction_date",
+				"has_been_approved",
+				"has_no_sync_commits",
+				"page_size",
+				"start",
+				"state",
+				"sync_ready",
+				"sync_status",
+				"synced_after",
+				"to_date",
+				"to_submitted_at",
+				"to_transaction_date",
+				"trip_id",
+				"updated_after",
+				"user_id"
+			],
+			"body": []
+		}
+	},
+	"/reimbursements/mileage": {
+		"POST": {
+			"query": [],
+			"body": [
+				"distance",
+				"distance_units",
+				"end_location",
+				"memo",
+				"reimbursee_id",
+				"spend_allocation_id",
+				"start_location",
+				"trip_date",
+				"waypoints"
+			]
+		}
+	},
+	"/reimbursements/submit-receipt": {
+		"POST": {
+			"query": [],
+			"body": [
+				"idempotency_key",
+				"receipt",
+				"reimbursee_id",
+				"reimbursement_id"
+			]
+		}
+	},
+	"/reimbursements/{reimbursement_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/repayments": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"from_repaid_at",
+				"funding_methods",
+				"original_transaction_id",
+				"page_size",
+				"start",
+				"sync_status",
+				"to_repaid_at",
+				"user_id"
+			],
+			"body": []
+		}
+	},
+	"/roles": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/spend-programs": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"description",
+				"display_name",
+				"icon",
+				"is_shareable",
+				"issuance_rules",
+				"issuance_rules.automatic",
+				"issuance_rules.requestable",
+				"issue_physical_card_if_needed",
+				"permitted_spend_types",
+				"permitted_spend_types.primary_card_enabled",
+				"permitted_spend_types.reimbursements_enabled",
+				"spending_restrictions",
+				"spending_restrictions.allowed_categories",
+				"spending_restrictions.allowed_vendors",
+				"spending_restrictions.blocked_categories",
+				"spending_restrictions.blocked_mcc_codes",
+				"spending_restrictions.blocked_vendors",
+				"spending_restrictions.interval",
+				"spending_restrictions.limit",
+				"spending_restrictions.lock_date",
+				"spending_restrictions.transaction_amount_limit"
+			]
+		}
+	},
+	"/spend-programs/{spend_program_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/spend-programs/{spend_program_id}/workflow-nodes": {
+		"GET": {
+			"query": [
+				"service_key"
+			],
+			"body": []
+		}
+	},
+	"/spend-requests/draft-via-ocr": {
+		"POST": {
+			"query": [],
+			"body": [
+				"document",
+				"idempotency_key",
+				"purchase_order_number_number",
+				"purchase_order_number_prefix",
+				"requester_user_id",
+				"spend_intent_id"
+			]
+		}
+	},
+	"/statements": {
+		"GET": {
+			"query": [
+				"from_date",
+				"page_size",
+				"start",
+				"to_date"
+			],
+			"body": []
+		}
+	},
+	"/statements/{statement_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/token": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/token/revoke": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/transactions": {
+		"GET": {
+			"query": [
+				"accounting_field_selection_id",
+				"all_requirements_met_and_approved",
+				"approval_status",
+				"awaiting_approval_by_user_id",
+				"card_id",
+				"department_id",
+				"entity_id",
+				"from_date",
+				"has_been_approved",
+				"has_no_sync_commits",
+				"has_statement",
+				"include_count",
+				"include_merchant_data",
+				"limit_id",
+				"location_id",
+				"max_amount",
+				"merchant_id",
+				"min_amount",
+				"order_by_amount_asc",
+				"order_by_amount_desc",
+				"order_by_date_asc",
+				"order_by_date_desc",
+				"page_size",
+				"requires_memo",
+				"sk_category_id",
+				"spend_program_id",
+				"start",
+				"state",
+				"statement_id",
+				"sync_status",
+				"synced_after",
+				"to_date",
+				"trip_id",
+				"user_id"
+			],
+			"body": []
+		}
+	},
+	"/transactions/{transaction_id}": {
+		"GET": {
+			"query": [
+				"include_merchant_data"
+			],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"line_items"
+			]
+		}
+	},
+	"/transfers": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"from_date",
+				"has_no_sync_commits",
+				"page_size",
+				"start",
+				"statement_id",
+				"status",
+				"sync_status",
+				"to_date"
+			],
+			"body": []
+		}
+	},
+	"/transfers/{transfer_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/trips": {
+		"GET": {
+			"query": [
+				"from_date",
+				"max_amount",
+				"min_amount",
+				"page_size",
+				"start",
+				"status",
+				"to_date",
+				"trip_name",
+				"user_ids"
+			],
+			"body": []
+		}
+	},
+	"/trips/{trip_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/unified-requests": {
+		"GET": {
+			"query": [
+				"department_ids",
+				"entity_ids",
+				"from_created_at",
+				"include_deleted",
+				"location_ids",
+				"max_amount",
+				"min_amount",
+				"owner_user_ids",
+				"page_size",
+				"request_statuses",
+				"spend_program_ids",
+				"spend_request_types",
+				"start",
+				"to_created_at",
+				"unified_spend_request_types"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"currency",
+				"end_date",
+				"entity_id",
+				"field_answers",
+				"line_items",
+				"name",
+				"request_owner_id",
+				"spend_program_id",
+				"start_date",
+				"submit"
+			]
+		}
+	},
+	"/unified-requests/{unified_request_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_field_selections",
+				"currency",
+				"end_date",
+				"entity_id",
+				"field_answers",
+				"line_items",
+				"name",
+				"start_date"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/unified-requests/{unified_request_id}/attachments": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"attachment_type",
+				"file"
+			]
+		}
+	},
+	"/unified-requests/{unified_request_id}/submit": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/users": {
+		"GET": {
+			"query": [
+				"department_id",
+				"email",
+				"employee_id",
+				"entity_id",
+				"location_id",
+				"page_size",
+				"role",
+				"start",
+				"status"
+			],
+			"body": []
+		}
+	},
+	"/users/deferred": {
+		"POST": {
+			"query": [],
+			"body": [
+				"department_id",
+				"direct_manager_id",
+				"email",
+				"first_name",
+				"idempotency_key",
+				"is_draft",
+				"is_manager",
+				"last_name",
+				"location_id",
+				"role",
+				"scheduled_deactivation_date"
+			]
+		}
+	},
+	"/users/deferred/status/{task_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/users/{user_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"auto_promote",
+				"department_id",
+				"direct_manager_id",
+				"first_name",
+				"is_manager",
+				"last_name",
+				"location_id",
+				"role",
+				"scheduled_deactivation_date"
+			]
+		}
+	},
+	"/users/{user_id}/deactivate": {
+		"PATCH": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/users/{user_id}/invite": {
+		"POST": {
+			"query": [],
+			"body": [
+				"action",
+				"invitation_time"
+			]
+		}
+	},
+	"/users/{user_id}/reactivate": {
+		"PATCH": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vault/cards": {
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_rules",
+				"allowed_overage_percent_override",
+				"display_name",
+				"spend_program_id",
+				"spending_restrictions",
+				"spending_restrictions.allowed_categories",
+				"spending_restrictions.allowed_vendors",
+				"spending_restrictions.blocked_categories",
+				"spending_restrictions.blocked_mcc_codes",
+				"spending_restrictions.blocked_vendors",
+				"spending_restrictions.interval",
+				"spending_restrictions.limit",
+				"spending_restrictions.lock_date",
+				"spending_restrictions.transaction_amount_limit",
+				"user_id"
+			]
+		}
+	},
+	"/vault/cards/{card_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vendors": {
+		"GET": {
+			"query": [
+				"accounting_vendor_remote_ids",
+				"external_vendor_id",
+				"from_created_at",
+				"from_updated_at",
+				"include_draft",
+				"include_subsidiary",
+				"is_active",
+				"merchant_id",
+				"name",
+				"page_size",
+				"sk_category_ids",
+				"start",
+				"to_created_at",
+				"to_updated_at",
+				"vendor_owner_id",
+				"vendor_tracking_category_option_ids"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"accounting_vendor_remote_id",
+				"acting_user_id",
+				"address",
+				"address.address_line_1",
+				"address.address_line_2",
+				"address.city",
+				"address.country",
+				"address.pay_to_name",
+				"address.postal_code",
+				"address.state",
+				"business_vendor_contacts",
+				"business_vendor_contacts.email",
+				"business_vendor_contacts.first_name",
+				"business_vendor_contacts.last_name",
+				"business_vendor_contacts.phone",
+				"country",
+				"default_entity_id",
+				"external_vendor_id",
+				"name",
+				"net_payment_terms",
+				"parent_vendor_id",
+				"request_payment_details",
+				"request_tax_details",
+				"requesting_user_id",
+				"state",
+				"vendor_owner_id",
+				"vendor_tracking_category_option_id"
+			]
+		}
+	},
+	"/vendors/agreements": {
+		"POST": {
+			"query": [],
+			"body": [
+				"agreement_custom_records",
+				"agreement_custom_records.filters",
+				"agreement_custom_records.type",
+				"auto_renews",
+				"contract_owner_ids",
+				"department_ids",
+				"end_date_range",
+				"end_date_range.end",
+				"end_date_range.start",
+				"exclude_snoozed",
+				"has_end_date",
+				"has_pending_expansion_requests",
+				"has_reminders",
+				"include_archived",
+				"is_active",
+				"is_up_for_renewal",
+				"last_date_to_terminate_range",
+				"last_date_to_terminate_range.end",
+				"last_date_to_terminate_range.start",
+				"max_days_remaining",
+				"max_end_date",
+				"max_last_date_to_terminate",
+				"max_start_date",
+				"max_total_value",
+				"min_days_remaining",
+				"min_end_date",
+				"min_last_date_to_terminate",
+				"min_start_date",
+				"min_total_value",
+				"page_size",
+				"payee_agreement_ids",
+				"payee_ids",
+				"payee_owner_ids",
+				"renewal_status",
+				"renewal_status_exclude",
+				"start",
+				"start_date_range",
+				"start_date_range.end",
+				"start_date_range.start"
+			]
+		}
+	},
+	"/vendors/agreements/{agreement_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"auto_renewal",
+				"contract_owner_ids",
+				"description",
+				"end_date",
+				"last_date_to_terminate",
+				"name",
+				"notifications_on",
+				"renewal_action",
+				"renewal_action.mark_vendor_inactive",
+				"renewal_action.reason",
+				"renewal_action.type",
+				"renewal_notification_settings",
+				"renewal_notification_settings.notification_triggers",
+				"renewal_notification_settings.recipient_approval_group_uuids",
+				"renewal_notification_settings.recipient_dynamic_user_group_uuids",
+				"renewal_notification_settings.recipient_user_uuids",
+				"renewal_notification_settings.recurring_settings",
+				"renewal_notification_settings.scheduled_enabled",
+				"renewal_notification_settings.should_notify_contract_owner_managers",
+				"renewal_notification_snooze",
+				"renewal_notification_snooze.duration",
+				"renewal_notification_snooze.unit",
+				"renewal_notification_snoozed_until",
+				"start_date",
+				"total_value",
+				"total_value.amount",
+				"total_value.currency_code"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vendors/agreements/{agreement_id}/documents": {
+		"POST": {
+			"query": [],
+			"body": [
+				"documents"
+			]
+		}
+	},
+	"/vendors/agreements/{agreement_id}/link": {
+		"POST": {
+			"query": [],
+			"body": [
+				"documents",
+				"purchase_order_ids"
+			]
+		}
+	},
+	"/vendors/agreements/{agreement_id}/link-spend-request": {
+		"POST": {
+			"query": [],
+			"body": [
+				"source",
+				"spend_request_id"
+			]
+		}
+	},
+	"/vendors/agreements/{agreement_id}/unlink": {
+		"DELETE": {
+			"query": [],
+			"body": [
+				"documents",
+				"purchase_order_ids"
+			]
+		}
+	},
+	"/vendors/credits": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"from_accounting_date",
+				"from_created_at",
+				"include_fully_used",
+				"is_archived",
+				"page_size",
+				"start",
+				"to_accounting_date",
+				"to_created_at"
+			],
+			"body": []
+		}
+	},
+	"/vendors/credits/{vendor_credit_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"PATCH": {
+			"query": [],
+			"body": [
+				"accounting_vendor_remote_id",
+				"address",
+				"address.address_line_1",
+				"address.address_line_2",
+				"address.city",
+				"address.country",
+				"address.pay_to_name",
+				"address.postal_code",
+				"address.state",
+				"country",
+				"default_bank_account_id",
+				"default_entity_id",
+				"description",
+				"display_name",
+				"external_vendor_id",
+				"is_active",
+				"name",
+				"net_payment_terms",
+				"request_payment_details",
+				"request_tax_details",
+				"state",
+				"vendor_tracking_category_option_id"
+			]
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/accounts": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/accounts/{bank_account_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/accounts/{bank_account_id}/archive": {
+		"POST": {
+			"query": [],
+			"body": [
+				"replacement_bank_account_id"
+			]
+		}
+	},
+	"/vendors/{vendor_id}/agreements": {
+		"POST": {
+			"query": [],
+			"body": [
+				"auto_renewal",
+				"contract_owner_ids",
+				"description",
+				"end_date",
+				"last_date_to_terminate",
+				"line_items",
+				"name",
+				"notifications_on",
+				"renewal_notification_settings",
+				"renewal_notification_settings.notification_triggers",
+				"renewal_notification_settings.recipient_approval_group_uuids",
+				"renewal_notification_settings.recipient_dynamic_user_group_uuids",
+				"renewal_notification_settings.recipient_user_uuids",
+				"renewal_notification_settings.recurring_settings",
+				"renewal_notification_settings.scheduled_enabled",
+				"renewal_notification_settings.should_notify_contract_owner_managers",
+				"start_date",
+				"total_value",
+				"total_value.amount",
+				"total_value.currency_code"
+			]
+		}
+	},
+	"/vendors/{vendor_id}/children": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/contacts": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"email",
+				"first_name",
+				"is_default",
+				"last_name",
+				"phone"
+			]
+		}
+	},
+	"/vendors/{vendor_id}/contacts/{vendor_contact_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/credits": {
+		"GET": {
+			"query": [
+				"entity_id",
+				"from_accounting_date",
+				"from_created_at",
+				"include_fully_used",
+				"is_archived",
+				"page_size",
+				"start",
+				"to_accounting_date",
+				"to_created_at"
+			],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/hold": {
+		"POST": {
+			"query": [],
+			"body": [
+				"reason"
+			]
+		}
+	},
+	"/vendors/{vendor_id}/payment-methods": {
+		"GET": {
+			"query": [
+				"page_size",
+				"start"
+			],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/release": {
+		"POST": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/vendors/{vendor_id}/update-bank-accounts": {
+		"POST": {
+			"query": [],
+			"body": [
+				"account_nickname",
+				"ach_details",
+				"ach_details.account_name",
+				"ach_details.account_number",
+				"ach_details.account_owner_type",
+				"ach_details.account_type",
+				"ach_details.routing_number",
+				"crypto_details",
+				"crypto_details.account_name",
+				"crypto_details.network",
+				"crypto_details.wallet_address",
+				"is_default",
+				"wire_details",
+				"wire_details.account_name",
+				"wire_details.account_number",
+				"wire_details.beneficiary_address",
+				"wire_details.routing_number"
+			]
+		}
+	},
+	"/webhooks": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"POST": {
+			"query": [],
+			"body": [
+				"additional_headers",
+				"endpoint_url",
+				"event_types"
+			]
+		}
+	},
+	"/webhooks/mock-webhook-event": {
+		"POST": {
+			"query": [],
+			"body": [
+				"event_type",
+				"object_id",
+				"object_metadata"
+			]
+		}
+	},
+	"/webhooks/{webhook_id}": {
+		"GET": {
+			"query": [],
+			"body": []
+		},
+		"DELETE": {
+			"query": [],
+			"body": []
+		}
+	},
+	"/webhooks/{webhook_id}/verify": {
+		"POST": {
+			"query": [],
+			"body": [
+				"challenge"
+			]
+		}
+	}
+}
